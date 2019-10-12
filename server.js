@@ -14,17 +14,18 @@ app.use(bodyParser.urlencoded({
 
 app.get("/gifs", (req, res) => {
     let search = req.query.search;
+    let gifUrls = {};
     axios.get(`https://api.giphy.com/v1/gifs/search?api_key=Banyh3vMsBByJUF45452K3RXj8rwSGBY&q=${search}&limit=25&offset=0&rating=G&lang=en`)
     .then(function (response) {
-        // console.log(response.data)
-
         for (let i of response.data.data) {
-            console.log(i.url)
+            // console.log(i.images.original.url)
+            gifUrls[i.id] = i.images.original.url;
         }
+        res.json(gifUrls);
     })
     
     
-    res.send(`the gifs are going. You searched ${search}`);
+    ;
 })
 
 app.get("/images", (req, res) => {
