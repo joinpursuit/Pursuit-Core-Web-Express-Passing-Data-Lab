@@ -45,18 +45,17 @@ document.addEventListener("DOMContentLoaded", () => {
         let selectedAPI = selectServer.value;
 
         let searchInput = search.value;
-        
+        searchInput =  searchInput.replace(' ', '+');
         
         if (selectedAPI === 'Images') {
-            searchInput =  searchInput.replace(' ', '+');
             let searchCategory = selectCategory.value;
             let searchType = selectType.value;
 
-            let endPoint = `&q=${searchInput}&per_page=200&image_type=${searchType}`;
+            let endPoint = `?q=${searchInput}&per_page=200&image_type=${searchType}`;
             if (searchCategory !== "--- Select a Category ---"){
                 endPoint += `&category=${searchCategory}`
             }
-            
+            console.log(endPoint)
             let response = await axios.get(`http://localhost:3000/${selectedAPI}/${endPoint}`)
             
             displayImagesResults(picContainer, response.data);
@@ -67,10 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 let subServer = selectType.value;
                 let rating = selectCategory.value;
-                let endPoint = `&q=${searchInput}&limit=200`
+                let endPoint = `?q=${searchInput}&limit=200`
                 if (rating !== "--- Select a Category ---") {
                     endPoint += `&rating=${rating}`
                 }
+                console.log(endPoint)
                 let response = await axios.get(`http://localhost:3000/${subServer}/${endPoint}`)
                 console.log(response.data.data);
                 displayGifResults(picContainer, response.data.data);
