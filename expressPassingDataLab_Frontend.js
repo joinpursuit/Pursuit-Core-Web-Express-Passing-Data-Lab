@@ -4,27 +4,52 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let imgButton = document.querySelector('#image');
     gifButton.addEventListener('click', (event)=>{
         event.preventDefault();
+        displayGif();
     })
     imgButton.addEventListener('click', (event)=>{
         event.preventDefault();
+        displayImg();
     })
 
 })
 
-const inputBox = document.querySelector('input');
-const queryValue = inputBox.value;
 
-const passingDataServer = 'http://localhost:4444'
+const displayGif = async () =>{
+    const queryValue = document.querySelector('input').value;
+    const dataServer = `http://localhost:4444/gifs?search=${queryValue}`
 
-const sendInfoToServer =  async ()=>{
+    await axios
+            .get(dataServer)
+            .then((response)=>{
+                let result = response.data
+                console.log(result)
+            })
+            .catch((error)=>{
+                console.log('Error!')
+            })
+}
 
-    await axios(passingDataServer)
-    .then((response)=>{
-        console.log('hi')
-        
-    })
-    .catch((error)=>{
-        console.log('Error! 404')
-    })
+const displayImg = async () =>{
+    const queryValue = document.querySelector('input').value;
+    const dataServer = `http://localhost:4444/images?search=${queryValue}`
 
-} 
+    await axios
+            .get(dataServer)
+            .then((response)=>{
+                let result = response.data
+                console.log(result)
+            })
+            .catch((error)=>{
+                console.log('Error!')
+            })
+}
+
+const displayContent = () =>{
+    let contentDiv = document.createElement('div');
+    let content = document.createElement('img');
+    content.src = "";
+
+    document.appendChild(contentDiv);
+    contentDiv.appendChild(content);
+
+}

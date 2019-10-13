@@ -2,10 +2,11 @@ const express = require('express');
 const axios = require ('axios');
 const app = express();
 
-// const imgAPI = `https://pixabay.com/images/search/${req}`;
-// const gifAPI = `https://api.giphy.com/v1/gifs/search?api_key=oPeDxNh6j8L19KlXicskRFXA3txlJWtS&q=${request}&limit=1`;
+
+
 
 app.get('/images/:search', (request,response)=>{
+    const imgAPI = `https://pixabay.com/images/search/${req}`;
     const req = request.params
 
     axios
@@ -20,7 +21,9 @@ app.get('/images/:search', (request,response)=>{
 })
 
 app.get('/gif/:search/', (request,response)=>{
+    const gifAPI = `https://api.giphy.com/v1/gifs/search?api_key=oPeDxNh6j8L19KlXicskRFXA3txlJWtS&q=${req}&limit=1`;
 
+    const req = request.param
 
     axios
     .get(gifAPI)
