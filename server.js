@@ -23,6 +23,9 @@ app.get("/gifs", (req, res) => {
         }
         res.json(gifUrls);
     })
+    .catch(function (error) {
+        console.log("There's an error")
+    })
 })
 
 app.get("/images", (req, res) => {
@@ -30,10 +33,13 @@ app.get("/images", (req, res) => {
     let gifUrls = {};
     axios.get(`https://pixabay.com/api/?key=13922615-0f271283db4db17fa1800b9e8&q=${search}`)
     .then(function (response) {
-        for (let i of response.hits) {
+        for (let i of response.data.hits) {
             gifUrls[i.id] = i.webformatURL;
         }
         res.json(gifUrls);
+    })
+    .catch(function (error) {
+        console.log("Theres an error")
     })
 
 })

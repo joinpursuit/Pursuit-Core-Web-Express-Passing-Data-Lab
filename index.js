@@ -12,10 +12,19 @@ function getImages(event) {
 
     let searchBar = document.getElementById("searchBar");
     let searchValue = searchBar.value;
+    let theDiv = document.getElementById("imageDiv")
+
+    while(theDiv.hasChildNodes()) {
+        theDiv.removeChild(theDiv.childNodes[0]);
+    }
 
     axios.get(`http://localhost:3000/images?search=${searchValue}`)
     .then(function (response) {
-        console.log(response)
+        for (let i in response.data) {
+            let img = document.createElement("img");
+            img.src = response.data[i];
+            theDiv.append(img);
+        }
     })
 }
 
