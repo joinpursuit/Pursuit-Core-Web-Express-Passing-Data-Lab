@@ -25,6 +25,18 @@ const loadDataFromGiphy = async (param) => {
     return data;
 }
 
+const loadDataFromPixabay = async (param) => {
+
+    const url = `https://pixabay.com/api/?key=${pixaBayKey}&q=${param}&image_type=photo`
+
+    const {
+        data
+    } = await axios.get(url)
+    // console.log(data.hits);
+
+    return data.hits;
+}
+
 app.get('/gif', async (req, res) => {
     let search = req.query.search;
 
@@ -34,15 +46,16 @@ app.get('/gif', async (req, res) => {
     res.json(dataMap)
 })
 
-app.get('/images', (req, res) => {
-    let search = req.query.search;
-    console.log('req.query',
-        req.query);
+app.get('/images', async (req, res) => {
+    let imgSearch = req.query.search;
 
-    res.send(req.query)
+    let imgData = await loadDataFromPixabay(imgSearch);
+    // console.log(imgData);
+
+    let imgMap = imgData.map(el => el.largeImageURL);
+    res.json(imgMap)
 })
 
 app.listen(8000, () => {
     console.log('Running at http://localhost:3000/');
-
 })
