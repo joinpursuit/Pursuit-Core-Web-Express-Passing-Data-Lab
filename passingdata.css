@@ -1,0 +1,13 @@
+body {
+    display:flex;
+    justify-content: center;
+    align-content: flex-start;
+}
+.container{
+    font-family: 'Roboto', sans-serif;
+    width: 60%;
+}
+img{
+    height: 85%;
+    width: 70%;
+}
