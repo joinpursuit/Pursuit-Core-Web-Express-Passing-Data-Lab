@@ -36,8 +36,8 @@ app.get('/images', async (req, res) => {
     let searchedImages = await makeImageArray(query);
     console.log(query)
 
-    for(let i = 0; i < searchedImages.data.length; i++) {
-        printedPic.push(searchedImages.data[i].images.fixed_width.url)
+    for(let i = 0; i < searchedImages.hits.length; i++) {
+        printedPic.push(searchedImages.hits[i].largeImageURL)
     }
     // res.json(searchedImages);
     res.json(printedPic);
@@ -53,19 +53,16 @@ app.listen(1337, () => {
     console.log("Running at http://localhost:1337/")
 })
 
-
-// https://pixabay.com/api/?key=13922718-26a724f680e1f800fd942b2fa&q=yellow+flowers&image_type=photo
-
-async function makeImageArray () {
-    const myURL = `https://pixabay.com/api/?key=13922718-26a724f680e1f800fd942b2fa&q=yellow+flowers&image_type=photo`
+async function makeImageArray (query) {
+    const myURL = `https://pixabay.com/api/?key=13922718-26a724f680e1f800fd942b2fa&q=${query.search}&image_type=photo`
     const resp = await axios.get(myURL) 
-    console.log("resp", resp.data)
+    // console.log("resp", resp.data)
     return resp.data;
 }
 
 async function makeGifArray (query) {
     const myURL = `https://api.giphy.com/v1/gifs/search?api_key=VeFePJ4kLDnXblmrfUBPNCu23R10GO9m&q=${query.search}&limit=25&offset=0&rating=G&lang=en`
     const resp = await axios.get(myURL) 
-    console.log("resp", resp.data)
+    // console.log("resp", resp.data)
     return resp.data;
 }
