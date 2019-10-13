@@ -23,13 +23,13 @@ server.get('/Images/:url', async (request, response) => {
 })
 
 server.get('/GIF/:url', async (request, response) => {
-    let gifBaseURL = 'https://api.giphy.com/v1/gifs/search?api_key=0BYfvFIo0M8HDE1GGPUeNkWwl9Uu1NPz';
+    let gifBaseURL = 'https://api.giphy.com/v1/gifs/search?api_key=TgEkE4985juUhP4WwNg6oc2dh3jObE68';
     let resp = await axios.get(`${gifBaseURL}${request.params.url}`)
     response.send(resp.data)
 })
 
 server.get('/Stickers/:url', async (request, response) => {
-    let stickersBaseURL = 'https://api.giphy.com/v1/stickers/search?api_key=0BYfvFIo0M8HDE1GGPUeNkWwl9Uu1NPz';
+    let stickersBaseURL = 'https://api.giphy.com/v1/stickers/search?api_key=TgEkE4985juUhP4WwNg6oc2dh3jObE68';
     let resp = await axios.get(`${stickersBaseURL}${request.params.url}`)
     response.send(resp.data)
 })

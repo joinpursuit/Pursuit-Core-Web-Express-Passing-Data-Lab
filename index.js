@@ -4,11 +4,8 @@ AllImageCategories = AllImageCategories.sort();
 
 const imageType = ["all", "photo", "illustration", "vector"]
 
-const gifCategory = ''
-let AllGifCategories = gifCategory.split(', ');
-AllGifCategories = AllGifCategories.sort();
-
-const gifType = [];
+const AllGifCategories = ['G', 'PG', 'PG-13', 'R']
+const gifType = ['GIF', 'Stickers'];
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,20 +14,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let search = document.querySelector('input');
 
-    let serverSelector = document.querySelector('#server');
-    let selectedAPI = serverSelector.value;
+    let selectServer = document.querySelector('#server');
 
     let selectType = document.querySelector('#type');
     fillTypeMenu(selectType, imageType);
 
-    let categorySelector = document.querySelector('#category');
-    fillCategoryMenu(categorySelector, AllImageCategories);
+    let selectCategory = document.querySelector('#category');
+    fillCategoryMenu(selectCategory, AllImageCategories);
     
-    serverSelector.addEventListener('change', () => {
+    selectServer.addEventListener('change', () => {
+        let selectedAPI = selectServer.value;
         let typeArray;
         let categoryArray;
 
-        if (selectedAPI === 'Image Search') {
+        if (selectedAPI === 'Images') {
             categoryArray = AllImageCategories;
             typeArray = imageType;
         } else {
@@ -39,20 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         fillTypeMenu(selectType, typeArray);
-        fillCategoryMenu(categorySelector, categoryArray)
+        fillCategoryMenu(selectCategory, categoryArray)
     })
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
         
-        let selectedAPI = serverSelector.value;
+        let selectedAPI = selectServer.value;
 
         let searchInput = search.value;
-        searchInput =  searchInput.replace(' ', '+');
         
-
+        
         if (selectedAPI === 'Images') {
-            let searchCategory = categorySelector.value;
+            searchInput =  searchInput.replace(' ', '+');
+            let searchCategory = selectCategory.value;
             let searchType = selectType.value;
 
             let endPoint = `&q=${searchInput}&per_page=200&image_type=${searchType}`;
@@ -68,13 +65,28 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!searchInput) {
                 picContainer.innerText = "Please enter a search value for this part to work";
             } else {
-                let endPoint = `&q=${searchInput}&limit=200&rating=PG-13`
-                let response = await axios.get(`http://localhost:3000/${selectedAPI}/${endPoint}`)
+                let subServer = selectType.value;
+                let rating = selectCategory.value;
+                let endPoint = `&q=${searchInput}&limit=200`
+                if (rating !== "--- Select a Category ---") {
+                    endPoint += `&rating=${rating}`
+                }
+                let response = await axios.get(`http://localhost:3000/${subServer}/${endPoint}`)
                 console.log(response.data.data);
                 displayGifResults(picContainer, response.data.data);
             }
         }
 
+    })
+
+    picContainer.addEventListener("click", (event) => {
+        if (event.target.parentNode === picContainer) {
+            let image = document.createElement('img');
+            image.src = event.target.id
+            picContainer.innerText = '';
+            picContainer.className = 'singleImage'
+            picContainer.appendChild(image);
+        }
     })
 
 })
@@ -101,6 +113,8 @@ const fillCategoryMenu = (parent, array) => {
 
 const displayImagesResults = (parent, data) => {
     parent.innerText = '';
+    parent.className = 'searchResult';
+
     if (data.hits.length) {
         for (let picture of data.hits) {
             let image = document.createElement('img');
@@ -117,11 +131,12 @@ const displayImagesResults = (parent, data) => {
 
 const displayGifResults = (parent, data) => {
     parent.innerText = '';
+    parent.className = 'searchResult';
 
     for (let picture of data) {
         let image = document.createElement('img');
         image.src = picture.images.fixed_width_downsampled.url;
-        // image.id = picture.largeImageURL;
+        image.id = picture.images.downsized_large.url;
         // image.alt = picture.tags;
 
         parent.appendChild(image)
