@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let imgButton = document.querySelector('#images');
     imgButton.addEventListener('click', clickImgSearch)
-
+    document.querySelector('input').value = ''
 })
 
 
