@@ -43,7 +43,6 @@ const displayToScreen = (source) => {
     console.log(randomNum);
 
     img.src = (source[randomNum])
-
     results.append(img)
 }
 

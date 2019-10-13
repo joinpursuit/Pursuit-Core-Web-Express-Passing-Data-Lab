@@ -43,8 +43,9 @@ app.get('/gif', async (req, res) => {
     let search = req.query.search;
 
     results = await loadDataFromGiphy(search);
+    console.log(results);
 
-    let dataMap = results.map(el => el.url);
+    let dataMap = results.map(el => el.images.original.url);
     res.json(dataMap)
 })
 
