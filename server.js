@@ -23,13 +23,19 @@ app.get("/gifs", (req, res) => {
         }
         res.json(gifUrls);
     })
-    
-    
-    ;
 })
 
 app.get("/images", (req, res) => {
-    res.send(`the images are going`)
+    let search = req.query.search;
+    let gifUrls = {};
+    axios.get(`https://pixabay.com/api/?key=13922615-0f271283db4db17fa1800b9e8&q=${search}`)
+    .then(function (response) {
+        for (let i of response.hits) {
+            gifUrls[i.id] = i.webformatURL;
+        }
+        res.json(gifUrls);
+    })
+
 })
 
 app.listen(port, () => {
