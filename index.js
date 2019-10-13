@@ -13,6 +13,8 @@ function picButton() {
 
 function createGifs() {
 
+    deleteGifs();
+
     let userSearch = document.querySelector("#giphyid");
 
     fetch(`http://localhost:1337/gifs/?search=${userSearch.value}`)
@@ -32,6 +34,7 @@ function appendGifs(resp) {
         let newImg = document.createElement('img');
     
         newImg.src = resp[i];
+        newImg.id = "theseGifImages"
         
         giphyGifs.appendChild(newImg);
     }
@@ -39,6 +42,8 @@ function appendGifs(resp) {
 }
 
 function createPics() {
+
+    deleteImages();
 
     let userSearch = document.querySelector("#pixabayid");
 
@@ -58,8 +63,25 @@ function appendPics(resp) {
         let newImg = document.createElement('img');
     
         newImg.src = resp[i];
+        newImg.id = "thesePicImages"
         
         pixabayPic.appendChild(newImg).style.height = "200px";
     }
     // console.log("WORK", resp[10])
+}
+
+function deleteGifs () {
+    let images = document.querySelectorAll('#theseGifImages');
+    console.log(images)
+    for (let i = 0; i < images.length; i++) {
+        images[i].parentNode.removeChild(images[i]);
+    }
+}
+
+function deleteImages () {
+    let images = document.querySelectorAll('#thesePicImages');
+    console.log(images)
+    for (let i = 0; i < images.length; i++) {
+        images[i].parentNode.removeChild(images[i]);
+    }
 }
