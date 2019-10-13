@@ -1,0 +1,25 @@
+{
+  "name": "Pursuit-Core-Web-Express-Passing-Data-Lab",
+  "version": "1.0.0",
+  "description": "Build a server that has endpoints for both images from Pixabay, and gifs from giphy.  Additionally, build out a simple front end that you can use to query the backend and display the results.",
+  "main": "labServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KameronsCodeSpace/Pursuit-Core-Web-Express-Passing-Data-Lab.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KameronsCodeSpace/Pursuit-Core-Web-Express-Passing-Data-Lab/issues"
+  },
+  "homepage": "https://github.com/KameronsCodeSpace/Pursuit-Core-Web-Express-Passing-Data-Lab#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
