@@ -8,11 +8,10 @@ app.use(cors());
 app.get('/gifs', (req,res) =>{
     async function apiGif() {
         let search = req.query.search
-         let limit = 30;
-        let apiRandomSearchUrl = `https://api.giphy.com/v1/gifs/search?api_key=scQk18P2oMykircXwoLXgsvGbP0uCZtz&q=${search}&limit=${limit}&offset=0&rating=G&lang=en`
+        let apiRandomSearchUrl = `https://api.giphy.com/v1/gifs/search?api_key=scQk18P2oMykircXwoLXgsvGbP0uCZtz&q=${search}`
         let resp = await axios.get(apiRandomSearchUrl)
 
-            for(let i=0;i< 30;i++){
+            for(let i=0;i< resp.data.data.length;i++){
                 console.log(resp.data.data[i].url)
                  }
 
@@ -27,8 +26,14 @@ app.get('/images', (req,res) =>{
         let search = req.query.search
         let apiRandomSearchUrl = `https://pixabay.com/api/?key=13922629-da0bb635de15506cfc4a4d3f3&q=${search}`
         let resp = await axios.get(apiRandomSearchUrl)
+        for(let i=0; i<resp.data.hits.length ; i++){
+            console.log(resp.data.hits[0].webformatURL)
+
+        }
+        
 
     }
+    res.json(apiImage())
 
 
 
