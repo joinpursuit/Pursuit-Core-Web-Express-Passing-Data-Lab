@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Image and GIF API Server</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./index.js"></script>
 </head>
 <body>
     <h1>Image and GIF Server</h1>
-    <input type="text" value="Enter Search Term">
+    <input id="search" type="text" placeholder="Enter Search Term">
     <button id="imgSearch">Image Search</button>
     <button id="gifSearch">GIF Search</button>
+
+    <div id="image-results"></div>
 </body>
 </html>
