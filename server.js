@@ -2,11 +2,13 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const axios = require('axios')
 const keys = require('./config.js')
+const cors = require('cors')
 
 let giphyKey = keys.config.giphyKey;
 let pixaBayKey = keys.config.pixaBayKey;
 
 const app = express();
+app.use(cors())
 
 app.use(bodyParser.urlencoded({
     extended: false
