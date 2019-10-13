@@ -21,7 +21,7 @@ app.get("/gif", (req, res) => {
 
 const displayData = (data) => {
   let dataArr = data.data 
-  let urlArr = dataArr.map(el => {return el.url});
+  let urlArr = dataArr.map(el => {return el.images.original.url});
   res.send(urlArr)
 }
 

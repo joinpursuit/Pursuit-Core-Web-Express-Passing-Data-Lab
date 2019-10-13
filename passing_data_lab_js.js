@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     listenToImgBtn();
 })
 
+// need to refresh each time before making a new request??
+
 const listenToGifBtn = () => {
   let gifBtn = document.querySelector("#gifBtn")
    gifBtn.addEventListener('click', getGifs)
@@ -14,19 +16,21 @@ const listenToImgBtn = () => {
 }
 
 const getGifs = () => {
-  let userSearch = document.querySelector('#text').value 
-  let url = `http://localhost:3000/gif/?search=${userSearch}`
+  let userSearch = document.querySelector('#text')
+  let url = `http://localhost:3000/gif/?search=${userSearch.value}`
   fetch(url)
   .then(response => response.json())
   .then(data => displayResults(data))
+  userSearch.value = ""
 }
 
 const getImgs = () => {
-    let userSearch = document.querySelector('#text').value 
-  let url = `http://localhost:3000/image/?search=${userSearch}`
+  let  userSearch = document.querySelector('#text')
+  let url = `http://localhost:3000/image/?search=${userSearch.value}`
   fetch(url)
   .then(response => response.json())
   .then(data => displayResults(data))
+  userSearch.value = ""
 }
 
 const displayResults = (data) => {
