@@ -1,0 +1,13 @@
+.singleImage, .searchResult {
+    margin-top: 20px;
+}
+
+.singleImage img {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.searchResult img {
+    margin: 5px;
+}
