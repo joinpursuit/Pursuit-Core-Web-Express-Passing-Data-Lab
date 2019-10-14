@@ -12,13 +12,13 @@ app.use(bodyParser.urlencoded({
 }))
 let emptyObj = {};
 
-app.get('/gif/:search', (request, response)=>{
+app.get('/gifs/:search', async(request, response)=>{
     let urls = `https://api.giphy.com/v1/gifs/search?api_key=DqbAfGDrEbDCiyGtVnUjCl2PCJDqHXVD`;
-    let load = request.query.search;
+    let load = request.params.search;
     let pic = axios.get(urls+ "&q="+load + "&limit=1")
     // .then(function(response){  
     for(let i of pic.data.data) {
-        emptyObj[i.id] = i.images.original.urls;
+        emptyObj[i.id] = i.images.original.url;
     }
     
     response.json(data)
@@ -26,9 +26,9 @@ app.get('/gif/:search', (request, response)=>{
     // response.send(response.data)
 
 })
-app.get('/images/:search',(request, response)=>{
+app.get('/images/:search',async(request, response)=>{
     let urls = `https://pixabay.com/api/?key=13923830-df4661fc6f67f3ecc5b2d1c5b`;
-    let load = request.query.search;
+    let load = request.params.search;
     let pic = axios.get(urls+ "&q="+load + "&limit=1")
     // .then(function(response){  
     for(let i of pic.data.hits) {
