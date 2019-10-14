@@ -16,9 +16,10 @@ const fetchServerData = async()=>{
     for(let gif of response.data){
         let image = document.createElement('img')
         image.src = gif
-        results.append(img)
+        results.append(image)
     }
 }
+
 const fetchServerData2 = async()=>{
     let search = document.getElementById("search").value;
     const url = `http://localhost:5004/images/${search}`
