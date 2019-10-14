@@ -25,8 +25,20 @@ app.get("/gifs/:search", async (request, response) => {
     response.json(data)
 })
 
-app.get("/images/:search", () => {
-    let data = {}
+app.get("/images/:search", async (request, response) => {
+    let searchTerm = request.params.search
+    const myUrl = `https://pixabay.com/api/?key=13922911-5ee2f9370dda27274bac312c6&q=${searchTerm}&per_page=25`;
+    let data = []
+    
+    let axiosResponse = await axios.get(myUrl);
+
+    for(let key of axiosResponse.data.hits) {
+        data.push(key.webformatURL)
+    }
+
+    console.log(data)
+    // console.log(axiosResponse.data)
+    response.json(data)
 })
 
 app.listen(port, () => {
