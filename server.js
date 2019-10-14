@@ -15,14 +15,14 @@ let emptyObj = {};
 app.get('/gif/:search', (request, response)=>{
     let urls = `https://api.giphy.com/v1/gifs/search?api_key=DqbAfGDrEbDCiyGtVnUjCl2PCJDqHXVD`;
     let load = request.query.search;
-    let gif = axios.get(urls+ "&q="+load + "&limit=1")
+    let pic = axios.get(urls+ "&q="+load + "&limit=1")
     // .then(function(response){  
-    for(let i of response.data.data) {
+    for(let i of pic.data.data) {
         emptyObj[i.id] = i.images.original.urls;
     }
     
-    response.json(gif.data)
-    console.log(gif.data)
+    response.json(data)
+    console.log(data)
     // response.send(response.data)
 
 })
@@ -31,12 +31,12 @@ app.get('/images/:search',(request, response)=>{
     let load = request.query.search;
     let pic = axios.get(urls+ "&q="+load + "&limit=1")
     // .then(function(response){  
-    for(let i of response.data.hits) {
+    for(let i of pic.data.hits) {
         emptyObj[i.id] = i.webformatURL;
     }
     
-    response.json(pic.data)
-    console.log(pic.data)
+    response.json(data)
+    console.log(data)
     // response.send(response.data)
 
 })
@@ -50,7 +50,7 @@ app.get('/images/:search',(request, response)=>{
 // })
 
 app.listen(port, ()=>{
-    console.log('running at http://localhost:5004/')
+    console.log(`server is at ${port}`)
 })
 
 // const imageArray = ()=>{
