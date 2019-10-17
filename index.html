@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+   <meta name="author" content="Joseph P. Pasaoa" />
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+   <title>Imagery Search | Joseph P. Pasaoa</title>
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   <script src="./index.js" type="text/javascript"></script>
+   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Raleway&display=swap" /> -->
+   <link rel="stylesheet" href="./style.css" />
+
+</head>
+<body>
+
+   <div id="base-grid">
+
+      <div id="left">
+         <h1>Serve Me Imagery</h1>
+
+         <p>What do you want to see?</p>
+
+         <form id="searchform">
+            <input type="text" id="searchbox" autofocus />
+            <div>
+               <button type="button" id="searchbutton">Hit Me!</button>
+               <input type="radio" name="imgtype" value="images" id="imgtype1" checked /><label for="imgtype1">Images</label>
+               <input type="radio" name="imgtype" value="gifs" id="imgtype2" /><label for="imgtype2">Gifs</label>
+            </div>
+         </form>
+      </div>
+      <div id="right"></div>
+
+   </div>
+
+</body>
+</html>
