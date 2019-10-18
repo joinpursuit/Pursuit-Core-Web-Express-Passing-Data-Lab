@@ -1,0 +1,22 @@
+body {
+    background-color: floralwhite;
+}
+
+#top {
+   text-align: center;
+}
+ #text {
+     margin: 10px;
+ }
+
+#results {
+    display: flex;
+    flex-flow: wrap;
+    
+}
+
+img {
+  width: 400px;
+  height: 300px;
+  margin: 10px;
+}
