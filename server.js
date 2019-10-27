@@ -11,6 +11,7 @@ const gifApiKey = 'Eyf3Ufvq8aC1qsaGnL1lP6mei8bQukAF'
 const gifURL = `http://api.giphy.com/v1/gifs/search?api_key=${gifApiKey}&q=`
 
 app.get('/gif/', async (req, res) => {
+    console.log(req.query)
     console.log(`You've hit GIF endpoint ${gifURL + req.query.search}`)
     let {data} = await fetch(gifURL + req.query.search).then(r => r.json())
     let gifLinks = data.map(data => data.images.original.url);
