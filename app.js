@@ -5,6 +5,7 @@ const port = 3000
 const app = express()
 app.use(cors())
 
+
 app.get("/gifs", async (req, res) => {
   let gifs = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=nGBdesYGe92z2bDC8fBGIc8BVhxOZCBh&q=${req.query.search}&limit=25&offset=0&rating=G&lang=en`)
   
@@ -15,6 +16,8 @@ app.get("/images", async (req, res) => {
 
   res.json({status: "success 200", images:images.data.hits})
 })
+
+
 
 
 app.listen(port, () => {

@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   gifSearch.addEventListener("click", async (e) => {
     ul.innerHTML = ""
     let results = await axios.get(`http://localhost:3000/gifs?search=${searchTerm.value}`)
+    debugger
     results.data.gifs.forEach((el) => {
       let li = document.createElement("li")
       let img = document.createElement("img")
