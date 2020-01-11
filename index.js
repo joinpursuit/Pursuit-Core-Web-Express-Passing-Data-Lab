@@ -6,18 +6,28 @@ document.addEventListener("DOMContentLoaded", () => {
     let imgSearch = document.querySelector("#imgSearch");
 
     gifSearch.addEventListener("click", () => {
-        axios.get(`https://api.giphy.com/v1/gifs/search?api_key=EuNi39MeeBPzJPWLqTWVYXxSFFgecZqB&q=${userInput.value}&limit=25&offset=0&rating=PG-13&lang=en`).then(res => {
-            let data = res.data.data;
+        container.innerHTML = "";
+        axios.get(`http://localhost:3000/gif/?search=${userInput.value}`).then(res => {
+            let data = res.data.gifs;
+            debugger
             data.forEach(gif => {
                 let img = document.createElement('img');
-                img.src = gif.url;
+                img.src = gif.images.downsized.url;
                 container.appendChild(img);
             })
         })
     })
 
     imgSearch.addEventListener("click", () => {
-        debugger
+        container.innerHTML = "";
+        axios.get(`http://localhost:3000/image/?search=${userInput.value}`).then(res => {
+            let data = res.data.images.hits;
+            data.forEach(image => {
+                let img = document.createElement('img');
+                img.src = image.webformatURL;
+                container.appendChild(img);
+            })
+        })
     })
 
 
