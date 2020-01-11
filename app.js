@@ -10,8 +10,13 @@ app.get("/", (req,res) => {
 })
 
 app.get("/gifs", (req,res) => {
-    await axios.get(``)
-    res.json({gifs: [   ]})
+    let searchData = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=zEBw1uIfpkiMfgemGbJbOJ37adnHIo35&q=${req.query.search}&limit=25&offset=0&rating=G&lang=en`)
+    res.json(searchData.data)
+})
+
+app.get("/images", (req,res) => {
+    let searchData = await axios.get(``)
+    res.json(searchData.data)
 })
 
 app.listen(port, () => {
