@@ -5,6 +5,7 @@ let imageSearch = document.querySelector("#imageSearch")
 
 gif.addEventListener("click", () => {
     let ul = document.querySelector("ul")
+    ul.innerHTML = ""
   axios.get(`http://localhost:1000/gif/?search=${input.value}`).then(res => {
       debugger
       res.data.gifs.data.forEach(pics=>{
