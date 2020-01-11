@@ -13,17 +13,38 @@ app.use(bodyParser.json());
 
 app.get("/gifSearch", async(req, res) => {
     // let key = "CAdm5WTGPw6Ae8Ouq0wPiKRZrUtZALNo"
-    console.log(req.params)
+    // console.log(req.params)
     try {
-        req = await axios.get("https://api.giphy.com/v1/gifs/search?api_key=CAdm5WTGPw6Ae8Ouq0wPiKRZrUtZALNo&q=&limit=25&offset=0&rating=G&lang=en")
+        let response = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=CAdm5WTGPw6Ae8Ouq0wPiKRZrUtZALNo&q=${req.query.search}&limit=25&offset=0&rating=G&lang=en`);
+        let gifs = response.data.data
+        let url =  []
+        gifs.forEach(gif => {
+            url.push(gif.images.downsized_large.url)
+        })
+        res.json(url)
     } catch(err) {
         console.log(err)
     }
 
-    res.json({
-        success: "made it",
-        res: res.data.data
-    })
+    // console.log()
+})
+
+app.get("/imageSearch", async(req, res) => {
+    // let key = "CAdm5WTGPw6Ae8Ouq0wPiKRZrUtZALNo"
+    // console.log(req.params)
+    try {
+        let response = await axios.get(`https://pixabay.com/api/search?api_key=14881666-5f15b36bd1109adc1a6d39da3&q=${req.query.search}`);
+        let images = response.data.hits
+        console.log(images)
+        let url =  []
+        images.forEach(image => {
+            url.push(image.hits.webformatURL)
+        })
+        res.json(url)
+    } catch(err) {
+        console.log(err)
+    }
+
 })
 
 
