@@ -18,7 +18,7 @@ let pics = [];
 app.get("/gif/:search", async (req, res)=>{
   let search = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=cgleorv3rf6dyPcaDbufB1cz1CLl1Rbx&q=${req.params.search}&limit=25&offset=0&rating=G&lang=en`)
   let image = search.data.data
-  // console.log(image)
+  gif=[]
   image.map((el)=>{
      gif.push(el.images.fixed_height.url)
   }) 
@@ -33,6 +33,7 @@ app.get("/image/:search", async (req, res)=>{
     urlOb.urlTwo = req.params.search
     let search = await axios.get(Object.values(urlOb).join("")) // console.log(search)
     let image = search.data.hits
+  pics=[]
   image.map((el)=>{
     pics.push(el.largeImageURL)  
   })

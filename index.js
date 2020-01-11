@@ -16,21 +16,24 @@ document.addEventListener("DOMContentLoaded",()=>{
     
     
     const gifSearch = async ()=>{
+        display.innerHTML="";
         try{
             let url = await axios.get(`http://localhost:3000/gif/${input.value}`)
             // console.log(url)
             let images = url.data
-          images.forEach((el)=>{
-            let img = document.createElement("img")
-            img.src = el
-            display.appendChild(img)
-          })
+
+            images.forEach((el)=>{
+                let img = document.createElement("img")
+                img.src = el
+                display.appendChild(img)
+            })
         }catch(err){
             console.log(err)
         }
     }
-
+    
     const imgSearch =async()=>{
+        display.innerHTML="";
         try{
             let url = await axios.get(`http://localhost:3000/image/${input.value}`)
             let images = url.data
@@ -43,7 +46,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             console.log(err)
         }
     }
-    
+
 gifbutton.addEventListener("click",(gifSearch))
 imageButton.addEventListener("click",(imgSearch))
 })
