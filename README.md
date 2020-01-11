@@ -61,6 +61,6 @@ Build a simple frontend to access your backend.  It should consist of:
 
 - An `input` for entering the search term
 - A `button` for "Gif search"
-- A `button` for "Image search"
+- A `button` for "`Image search`"
 
 Tapping a button should load either gifs or images in a `div` below the search bar.
