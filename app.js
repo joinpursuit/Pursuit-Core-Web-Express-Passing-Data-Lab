@@ -12,22 +12,15 @@ movies: movies.data})
 
 })
 
-// when you put in hhttps api you get //> movies array: {}
-
-//app.get("/people", (req, res)=>{
-//     res.json
-//     (people)
-// })
-//localhost:3000/gif/?search=spongebob
-
 let gif = [];
 let pics = [];
 
 app.get("/gif/:search", async (req, res)=>{
   let search = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=cgleorv3rf6dyPcaDbufB1cz1CLl1Rbx&q=${req.params.search}&limit=25&offset=0&rating=G&lang=en`)
   let image = search.data.data
+  // console.log(image)
   image.map((el)=>{
-     gif.push(el.url)
+     gif.push(el.images.fixed_height.url)
   }) 
   res.json(gif)
 })
