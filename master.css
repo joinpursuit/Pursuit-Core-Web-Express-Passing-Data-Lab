@@ -1,0 +1,9 @@
+body {
+    background-color: darkolivegreen;
+}
+
+#search {
+    display: flex;
+    flex-wrap: row;
+    justify-content: center;
+}
