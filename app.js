@@ -11,7 +11,7 @@ app.get("/gifs", async (req, res) => {
   res.json({status: "success 200", gifs:gifs.data.data})
 })
 app.get("/images", async (req, res) => {
-  let images = await axios.get(`https://pixabay.com/api/?key=14881729-f6bcb6a0e17a90d012bb901a1&q=${req.query.sear nch }&image_type=photo`)
+  let images = await axios.get(`https://pixabay.com/api/?key=14881729-f6bcb6a0e17a90d012bb901a1&q=${req.query.search }&image_type=photo`)
 
   res.json({status: "success 200", images:images.data.hits})
 })
