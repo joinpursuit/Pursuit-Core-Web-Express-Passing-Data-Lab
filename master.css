@@ -7,3 +7,21 @@ body {
     flex-wrap: row;
     justify-content: center;
 }
+
+input {
+    padding-inline-start: 30px;
+}
+
+img {
+    width: 300px;
+    height: 250px;
+    border-radius: 25%;
+    padding: 15px;
+}
+
+#results {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
