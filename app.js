@@ -33,12 +33,12 @@ app.get("/imageSearch", async(req, res) => {
     // let key = "CAdm5WTGPw6Ae8Ouq0wPiKRZrUtZALNo"
     // console.log(req.params)
     try {
-        let response = await axios.get(`https://pixabay.com/api/search?api_key=14881666-5f15b36bd1109adc1a6d39da3&q=${req.query.search}`);
+        let response = await axios.get(`https://pixabay.com/api/?key=14881666-5f15b36bd1109adc1a6d39da3&q=${req.query}&image_type=photo`);
         let images = response.data.hits
         console.log(images)
         let url =  []
         images.forEach(image => {
-            url.push(image.hits.webformatURL)
+            url.push(image.webformatURL)
         })
         res.json(url)
     } catch(err) {
