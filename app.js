@@ -15,7 +15,7 @@ app.get("/gifs", async (req,res)=>{
     let giphyArr = responce.data.data;
     let urlArr = []
     giphyArr.forEach(result =>{
-        urlArr.push(result.url)
+        urlArr.push(result.images.downsized_large.url)
     })
     res.json(urlArr)
     }catch(err){
