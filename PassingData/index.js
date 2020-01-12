@@ -8,23 +8,26 @@ addEventListener("DOMContentLoaded", () => {
 })
 
 const loadGifs = async () => {
-    imagesDiv.innerHTML =""
+    //imagesDiv.innerHTML =""
+    let input = document.querySelector("#search")
+    // debugger
     try {
-        let input = document.querySelector("input")
-        let imagesDiv = document.querySelector("imageDiv")
+        let imagesDiv = document.querySelector("#imagesDiv")
+
         let response = await axios.get(`http://localhost:3000/gif/${input.value}`)
-        let gifs = response.data;
-        gifs.forEach(gif => {
-            let img = document.createElement("img")
-            img.src = gif
-            imagesDiv.appendChild(img)
-        })
-    } catch (err) {
-        console.log(err)
+            let results = response.data
+            console.log(results)
+            for (let gif of results) {
+                let img = document.createElement("img")
+                let gifImage = gif
+                img.src = gifImage
+                imagesDiv.append(img)
+                debugger
+            }
+    }catch(err) {
+        console.log(err);
+
     }
-
-
-
 }
 
 const loadImages = async () => {
