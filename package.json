@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/dakiddj25/Pursuit-Core-Web-Express-Passing-Data-Lab#readme",
   "dependencies": {
+    "asyncawait": "^3.0.0",
+    "axios": "^0.19.1",
     "cors": "^2.8.5",
     "express": "^4.17.1"
   }
