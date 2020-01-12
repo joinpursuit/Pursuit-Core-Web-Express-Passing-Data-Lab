@@ -11,14 +11,17 @@ const setSearch = () => {
 } 
 
 const setGif = () => {
-    let imageSearch = document.querySelector("#gifSearch");
-    imageSearch.addEventListener("click", displayGifs);
+    let gifSearch = document.querySelector("#gifSearch");
+    gifSearch.addEventListener("click", displayGifs);
 } 
+
 const displayImage = async () => {
-    let input = document.querySelector("input").value;
+    let input = document.querySelector("input");
     try{
-        let res = await axios.get(`https://pixabay.com/api/?key=${pixyKey}&q=${input}`)
-        res.data.hits.slice(-6).forEach(pic =>{
+        let res = await axios.get(`http://localhost:3000/images?q=${input.value}`)
+        debugger
+        res.data.forEach(pic =>{
+            debugger
             let div = document.querySelector("#pics");
             let image = document.createElement("img");
             image.src = pic.largeImageURL;
@@ -30,15 +33,17 @@ const displayImage = async () => {
 }
 
 const displayGifs = async () => {
-    let input = document.querySelector("input").value;
+    let input = document.querySelector("input");
     try{
-        let res = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${gifKey}&q=${input}&limit=6&offset=0&rating=G&lang=en`);
-        res.data.data.forEach(gifs =>{
+        let res = await axios.get(`http://localhost:3000/gifs?q=${input.value}&limit=6&offset=0&rating=G&lang=en`);
+        debugger
+        res.data.data.forEach(gif =>{
             let div = document.querySelector("#pics");
             let image = document.createElement("img");
-            image.src = gifs.images.downsized.url;
+            image.src = gif.images.downsized.url;
             div.appendChild(image);
         })
+    input.value = "";
     } catch(err) {
         console.log(err)
     }
