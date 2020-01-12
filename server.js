@@ -19,7 +19,7 @@ app.get("/gifs", async (req, res) => {
         let gifImage = [];
         let gifsRes = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${gifKey}&q=${req.query.q}&limit=6&offset=0&rating=G&lang=en`);
         
-        gifArr = gifsRes.data.data;
+       let gifArr = gifsRes.data.data;
         gifArr.forEach(gif => {
             gifImage.push(gif.images.downsized_large.url)
         })

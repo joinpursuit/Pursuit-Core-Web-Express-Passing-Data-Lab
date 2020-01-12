@@ -16,6 +16,7 @@ const setGif = () => {
 } 
 
 const displayImage = async () => {
+    clearDiv()
     let input = document.querySelector("input");
     try{
         let res = await axios.get(`http://localhost:3000/images?q=${input.value}`)
@@ -28,20 +29,27 @@ const displayImage = async () => {
     } catch(err) {
         console.log(err)
     }
+    input.value = "";
 }
 
 const displayGifs = async () => {
+    clearDiv()
     let input = document.querySelector("input");
     try{
         let res = await axios.get(`http://localhost:3000/gifs?q=${input.value}`);
         res.data.forEach(gif =>{
-            let div = document.querySelector("#pics");
+            div = document.querySelector("#pics");
             let image = document.createElement("img");
             image.src = gif;
             div.appendChild(image);
         })
-    input.value = "";
     } catch(err) {
         console.log(err)
     }
+    input.value = "";
+}
+
+const clearDiv = () => {
+    let div = document.querySelector("#pics")
+    if(div) div.innerHTML = "";
 }
