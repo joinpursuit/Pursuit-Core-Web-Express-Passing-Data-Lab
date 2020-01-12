@@ -1,0 +1,31 @@
+body{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background-color: turquoise;
+}
+h1 {
+    text-align: center;
+}
+#search {
+    text-align: center;
+}
+.userInput {
+    height: 3vh;
+    width: 10vw;
+    margin: 5px;
+    font-size: medium;
+}
+#pics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+img {
+    height: 25vh;
+    width: 25vw;
+    padding: 40px;
+}
