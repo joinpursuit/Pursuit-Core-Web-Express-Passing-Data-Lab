@@ -17,18 +17,18 @@ let gifKey = "eZzQ4D3kLuqDmPlQUgDqmlD9dGc4JZl1";
 app.get("/gifs", async (req, res) => {
     try{
         let gifImage = [];
-        let gifsRes = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${gifKey}&q=${req.query.q}&limit=25&offset=0&rating=G&lang=en`);
+        let gifsRes = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${gifKey}&q=${req.query.q}&limit=6&offset=0&rating=G&lang=en`);
         
         gifArr = gifsRes.data.data;
         gifArr.forEach(gif => {
             gifImage.push(gif.images.downsized_large.url)
         })
+        res.json(gifImage);
 
     } catch (err){
         console.log(err)
     }
     console.log(req.query);
-    res.json(req.query);
 })
 
 app.get("/images", async (req, res) => {
@@ -37,7 +37,7 @@ app.get("/images", async (req, res) => {
         let response = await axios.get(`https://pixabay.com/api/?key=${pixyKey}&q=${req.query.q}`);
         let pixArr = response.data.hits;
 
-        pixArr.forEach(pic => {
+        pixArr.slice(-6).forEach(pic => {
             pixImage.push(pic.largeImageURL)     
         });
         res.json(pixImage);

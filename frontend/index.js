@@ -19,12 +19,10 @@ const displayImage = async () => {
     let input = document.querySelector("input");
     try{
         let res = await axios.get(`http://localhost:3000/images?q=${input.value}`)
-        debugger
         res.data.forEach(pic =>{
-            debugger
             let div = document.querySelector("#pics");
             let image = document.createElement("img");
-            image.src = pic.largeImageURL;
+            image.src = pic;
             div.appendChild(image);
         })
     } catch(err) {
@@ -35,12 +33,11 @@ const displayImage = async () => {
 const displayGifs = async () => {
     let input = document.querySelector("input");
     try{
-        let res = await axios.get(`http://localhost:3000/gifs?q=${input.value}&limit=6&offset=0&rating=G&lang=en`);
-        debugger
-        res.data.data.forEach(gif =>{
+        let res = await axios.get(`http://localhost:3000/gifs?q=${input.value}`);
+        res.data.forEach(gif =>{
             let div = document.querySelector("#pics");
             let image = document.createElement("img");
-            image.src = gif.images.downsized.url;
+            image.src = gif;
             div.appendChild(image);
         })
     input.value = "";
