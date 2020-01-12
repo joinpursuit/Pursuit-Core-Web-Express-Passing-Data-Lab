@@ -1,5 +1,3 @@
-let pixyKey = "14881651-1e1228a1f06e5912049e890d8"
-let gifKey = "eZzQ4D3kLuqDmPlQUgDqmlD9dGc4JZl1"
 document.addEventListener("DOMContentLoaded", () => {
     setSearch()
     setGif()
