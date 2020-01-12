@@ -7,9 +7,8 @@ const cors = require('cors')
 
 app.use(cors());
 
-app.use(bodyParser.urlencoded({
-    extended: false
-}))
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 
 app.get('/gif/:search', async(request, response)=>{
@@ -34,12 +33,12 @@ app.get('/images/:search',async(request, response)=>{
     let emptyObj = [];
 
     for(let i of pic.data.hits) {
-        emptyObj[i.id].push(i.webformatURL)
+        emptyObj.push(i.webformatURL)
         
     }
     
-    response.json(data)
-    console.log(data)
+    response.json(emptyObj)
+    console.log(emptyObj)
 
 
 })
