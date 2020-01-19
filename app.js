@@ -18,7 +18,7 @@ const query = req.query
 let url = "https://api.giphy.com/v1/gifs/search?api_key=umsYRExnwFVENabBKE1HMck5dcTk2aIt&q=&limit=25&offset=0&rating=G&lang=en"
 let gifData = axios.get(url)
     let gifs = []
-    response.data.data.forEach(a => {
+    response.data.data.forEach(e => {
    
   
 })
