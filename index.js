@@ -1,13 +1,30 @@
 let gif = document.querySelector("#gif")
 let image = document.querySelector("#img")
 let query = document.querySelector("#query")
-let ul = document.querySelector("ul")
+let queryResult = document.querySelector("#queryResult")
+let ul = document.createElement("ul")
 const port = 4000
 
-const display = (url) => {
-    const img = document.createElement('img');
-    img.src = url;
-    document.querySelector("#queryResult").append(img);
+const displayGif = (data) => {
+    data.forEach( el => {
+        let li = document.createElement("li")
+        let img = document.createElement("img")
+        img.src = el.images.downsized_large.url
+        li.appendChild(img)
+        ul.appendChild(li)
+        queryResult.appendChild(ul)
+    });
+}
+
+const displayImage = (data) => {
+    data.forEach( el => {
+        let li = document.createElement("li")
+        let img = document.createElement("img")
+        img.src = el.largeImageURL
+        li.appendChild(img)
+        ul.appendChild(li)
+        queryResult.appendChild(ul)
+    });
 }
 
 const getGif = async () => {
@@ -15,7 +32,7 @@ const getGif = async () => {
         let url = `http://localhost:${port}/gifs?search=${query.value}`;
         const search = await axios.get(url);
         debugger
-        display(search.data.data.gifs);
+        displayGif(search.data.gifs);
     } catch(err){
         console.log(err)
     }
@@ -24,8 +41,9 @@ const getGif = async () => {
 const getImage = async () => {
     try {
         let url = `http://localhost:${port}/images?search=${query.value}`;
-        const result = await axios.get(url);
-        display(result.data.hits[0].largeImageURL);
+        const search = await axios.get(url);
+        debugger
+        displayImage(search.data.images);
     } catch(err){
         console.log(err)
     }
@@ -33,30 +51,3 @@ const getImage = async () => {
 
 gif.addEventListener('click', getGif)
 image.addEventListener('click', getImage)
-
-
-//     gifSearch.addEventListener("click", async (e) => {
-//       ul.innerHTML = ""
-//       let results = await axios.get(`http://localhost:3000/gifs?search=${searchTerm.value}`)
-//       results.data.gifs.forEach((el) => {
-//         let li = document.createElement("li")
-//         let img = document.createElement("img")
-//         img.src = el.images.downsized_large.url
-//         li.appendChild(img)
-//         ul.appendChild(li)
-//       });
-//     })
-     
-//     imgSearch.addEventListener("click", async (e) => {
-//       ul.innerHTML= ""
-//       let results = await axios.get(`http://localhost:3000/images?search=${searchTerm.value}`)
-//       results.data.images.forEach((el) => {
-//         let li = document.createElement("li")
-//         let img = document.createElement("img")
-//         img.src = el.webformatURL
-//         li.appendChild(img)
-//         ul.appendChild(li)
-//       });
-     
-//     })
-//   })
