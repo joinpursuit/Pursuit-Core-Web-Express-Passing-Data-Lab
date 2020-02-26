@@ -1,0 +1,16 @@
+body{
+    background-color: pink;
+}
+
+#container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+img{
+    height: 25%;
+    width: 20%;
+    margin: 2%;
+}

@@ -6,7 +6,8 @@ let searchForm = document.querySelector("#searchForm");
 
 gifsInput.addEventListener("click", async e => {
   e.preventDefault();
-  let gifSearch = getDataInput.value;
+  getDataInput.innerText = "";
+  display.innerHTML = "";
   try {
     let req = await axios.get(`http://localhost:3000/gifs?q=${gifSearch}`);
     let gifsArray = req.data.gifs;
@@ -22,14 +23,15 @@ gifsInput.addEventListener("click", async e => {
 
 imagesInput.addEventListener("click", async e => {
   e.preventDefault();
+  display.innerHTML = "";
   let searchImage = getDataInput.value;
   try {
     let req = await axios.get(`http://localhost:3000/gifs?q=${searchImage}`);
-    let imgSearch = req.data.gifs
+    let imgSearch = req.data.gifs;
     imgSearch.forEach(img => {
-       let newImage = document.createElement("img");
-       newImage.src = img.images.downsized_large.url
-       display.appendChild(newImage);
+      let newImage = document.createElement("img");
+      newImage.src = img.images.downsized_large.url;
+      display.appendChild(newImage);
     });
   } catch (err) {
     console.log(err);
